@@ -3,6 +3,7 @@
   "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
+  "repository": "git@github.com:seamapi/nextflare.git",
   "scripts": {
     "build": "tsup src --dts --sourcemap inline"
   },
