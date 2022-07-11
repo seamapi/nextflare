@@ -23,7 +23,7 @@ export const nextflare = (next: NextAPIFunction) => {
       }
       if (req.headers.get("Content-Type") === "application/json") {
         try {
-          req.body = await req.json()
+          req.body = await cfReq.json()
         } catch (e) {
           return new Response("Couldn't parse body as JSON", { status: 400 })
         }
