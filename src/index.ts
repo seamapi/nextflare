@@ -1,5 +1,5 @@
 // Should we import this from next?
-export type NextAPIFunction = (req: any, res: any) => Promise<any>
+export type NextAPIFunction = (req: any, res: any) => any
 
 export const nextflare = (next: NextAPIFunction) => {
   return {
@@ -60,24 +60,22 @@ export const routes = (routes: {
     | Promise<{ default: NextAPIFunction } | NextAPIFunction>
     | NextAPIFunction
 }) => {
-  return {
-    fetch: nextflare(async (req: any, res: any) => {
-      const { searchParams, pathname } = new URL(req.url)
+  return nextflare(async (req: any, res: any) => {
+    const { searchParams, pathname } = new URL(req.url)
 
-      let fn = (routes as any)[pathname]
+    let fn = (routes as any)[pathname]
 
-      if (!fn) {
-        return new Response(`unknown route: ${pathname}`, {
-          status: 404,
-        })
-      }
+    if (!fn) {
+      return new Response(`unknown route: ${pathname}`, {
+        status: 404,
+      })
+    }
 
-      fn = await fn
-      if (fn.default) fn = fn.default
+    fn = await fn
+    if (fn.default) fn = fn.default
 
-      return fn(req, res)
-    }),
-  }
+    return fn(req, res)
+  })
 }
 
 nextflare.routes = routes
