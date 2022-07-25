@@ -9,9 +9,7 @@ test("nextflare.routes works", async (t) => {
     },
   })
 
-  await cloudflareObject.fetch(
-    { url: "http://example.com/api/items/someitem", headers: { get() {} } },
-    {},
-    {}
-  )
+  const req = new Request("http://example.com/api/items/someitem")
+
+  await cloudflareObject.fetch(req, {}, {})
 })
