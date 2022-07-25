@@ -1,3 +1,5 @@
+import nextRouteMatcher from "next-route-matcher"
+
 // Should we import this from next?
 export type NextAPIFunction = (req: any, res: any) => any
 
@@ -60,19 +62,24 @@ export const routes = (routes: {
     | Promise<{ default: NextAPIFunction } | NextAPIFunction>
     | NextAPIFunction
 }) => {
+  const routeMatcher = nextRouteMatcher(Object.keys(routes))
+
   return nextflare(async (req: any, res: any) => {
     const { searchParams, pathname } = new URL(req.url)
+    const matchedRoute = routeMatcher(pathname)
 
-    let fn = (routes as any)[pathname]
-
-    if (!fn) {
+    if (!matchedRoute) {
       return new Response(`unknown route: ${pathname}`, {
         status: 404,
       })
     }
 
+    let fn = (routes as any)[matchedRoute.matchedRoute]
+
     fn = await fn
     if (fn.default) fn = fn.default
+
+    req.query = { ...req.query, ...matchedRoute.routeParams }
 
     return fn(req, res)
   })
