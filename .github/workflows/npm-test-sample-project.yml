@@ -1,0 +1,22 @@
+name: NPM Test Sample Project
+on: [push]
+jobs:
+  npm_test_sample_project:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    name: Run NPM Test for Sample Project
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: "yarn"
+      - name: Run NPM Install for Sample Project
+        run: |
+          yarn install --frozen-lockfile
+          cd sample-project
+          yarn install --frozen-lockfile
+      - name: Run NPM Test Sample Project
+        run: cd sample-project && yarn test
