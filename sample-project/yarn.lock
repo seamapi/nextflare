@@ -293,10 +293,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-ava-wrangler-fixture@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/ava-wrangler-fixture/-/ava-wrangler-fixture-1.1.2.tgz#cf2dbde8a7f109de45c02dc8619aee590fbed597"
-  integrity sha512-8XNwY3OrBMYS7Muve5EQFeWTuB4Ym2+jTZF7cKtL8k++tmeVIkozGl3l/VQTqR3oMGQ/XWuOMjWty6b1uUAKGQ==
+ava-wrangler-fixture@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/ava-wrangler-fixture/-/ava-wrangler-fixture-1.2.1.tgz#93d7a469262e1e32ca65a00a2196c9ad5132bd4c"
+  integrity sha512-6deslCGk7jliApeR9uAzDhKVKFuD85rKcNshKAOrMteaCqpmXuFfiCnZG2r67+nm71BAPIyVxszcr0JjIE/E9g==
   dependencies:
     axios "^0.27.2"
     axios-error-monkeypatch "^1.0.1"
