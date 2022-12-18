@@ -3,13 +3,31 @@ import nextRouteMatcher from "next-route-matcher"
 // Should we import this from next?
 export type NextAPIFunction = (req: any, res: any) => any
 
+const cloudflareRequestProperties = [
+  "method",
+  "url",
+  "headers",
+  "redirect",
+  "fetcher",
+  "signal",
+  "cf",
+  "clone",
+]
+
 export const nextflare = (next: NextAPIFunction) => {
   return {
     // TODO add types here
     async fetch(cfReq: any, env: any, ctx: any) {
-      const req = { ...cfReq }
+      const req: any = {}
 
-      req.headers = cfReq.headers
+      // Normal object cloning doesn't work, the cloudflare request class is a
+      // bit weird- trying to spread into req or even using Object.getOwnPropertyNames
+      // doesn't work on cfReq
+      for (const key of cloudflareRequestProperties) {
+        req[key] = cfReq[key]
+      }
+
+      req.cfReq = cfReq
 
       req.env = env
       req.ctx = ctx
