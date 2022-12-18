@@ -9,6 +9,8 @@ export const nextflare = (next: NextAPIFunction) => {
     async fetch(cfReq: any, env: any, ctx: any) {
       const req = { ...cfReq }
 
+      req.headers = cfReq.headers
+
       req.env = env
       req.ctx = ctx
       const res: any = { statusCode: 200, headers: {} }
