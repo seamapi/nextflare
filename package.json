@@ -6,11 +6,11 @@
   "repository": "git@github.com:seamapi/nextflare.git",
   "scripts": {
     "test": "ava",
-    "build": "tsup src --dts --sourcemap inline"
+    "build": "tsup src --sourcemap inline"
   },
   "devDependencies": {
     "@types/node": "^18.0.6",
-    "ava": "^4.3.1",
+    "ava": "^4.3.3",
     "esbuild": "^0.14.49",
     "esbuild-register": "^3.3.3",
     "esbuild-runner": "^2.2.1",
@@ -19,6 +19,7 @@
     "whatwg-fetch": "^3.6.2"
   },
   "dependencies": {
+    "debug": "^4.3.4",
     "next-route-matcher": "^1.0.0"
   }
 }

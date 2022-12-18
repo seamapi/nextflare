@@ -6,7 +6,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^3.14.1",
     "ava": "^4.3.3",
-    "ava-wrangler-fixture": "^1.1.2",
+    "ava-wrangler-fixture": "^1.1.3",
     "esbuild-register": "^3.3.3",
     "nextflare": "file:../src",
     "wrangler": "^2.0.27"

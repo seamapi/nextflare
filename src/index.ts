@@ -1,4 +1,7 @@
 import nextRouteMatcher from "next-route-matcher"
+import Debug from "debug"
+
+const debug = Debug("nextflare")
 
 // Should we import this from next?
 export type NextAPIFunction = (req: any, res: any) => any
@@ -8,6 +11,7 @@ export const nextflare = (next: NextAPIFunction) => {
     // TODO add types here
     async fetch(cfReq: any, env: any, ctx: any) {
       const req = { ...cfReq }
+      debug(`Got Request: ${cfReq.method} ${cfReq.url}`)
 
       req.env = env
       req.ctx = ctx
@@ -68,6 +72,8 @@ export const routes = (routes: {
     const { searchParams, pathname } = new URL(req.url)
     const matchedRoute = routeMatcher(pathname)
 
+    debug(`Matched Route`, matchedRoute)
+
     if (!matchedRoute) {
       return new Response(`unknown route: ${pathname}`, {
         status: 404,
@@ -76,6 +82,7 @@ export const routes = (routes: {
 
     let fn = (routes as any)[matchedRoute.matchedRoute]
 
+    // handle import("./api/health") imports by awaiting the module
     fn = await fn
     if (fn.default) fn = fn.default
 
