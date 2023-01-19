@@ -56,6 +56,10 @@ export const nextflare = (next: NextAPIFunction) => {
       req.query = {}
       for (const [key, value] of searchParams) req.query[key] = value
 
+      req.json = () => {
+        // TODO how do we get the cloudflare JSON request body
+      }
+
       const cloudflareResponse: Response | undefined = await next(req, res)
 
       // Cloudflare Response object means the handler didn't use the NextJS
