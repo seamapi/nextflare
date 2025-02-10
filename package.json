@@ -12,7 +12,7 @@
   "devDependencies": {
     "@types/node": "^18.0.6",
     "ava": "^4.3.1",
-    "esbuild": "^0.14.49",
+    "esbuild": "^0.25.0",
     "esbuild-register": "^3.3.3",
     "esbuild-runner": "^2.2.1",
     "seam-plop": "^1.1.4",
